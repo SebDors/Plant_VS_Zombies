@@ -8,9 +8,10 @@ public class Zombies {
     private int degat_attaque;
     private int vitesse_de_deplacement;
     private String chemin_image;
-
+    private int id_map;
+    
     public Zombies(String id_zombie, String nom, int point_de_vie, int attaque_par_seconde, 
-                  int degat_attaque, int vitesse_de_deplacement, String chemin_image) {
+                    int degat_attaque, int vitesse_de_deplacement, String chemin_image, int id_map) {
         this.id_zombie = id_zombie;
         this.nom = nom;
         this.point_de_vie = point_de_vie;
@@ -18,6 +19,7 @@ public class Zombies {
         this.degat_attaque = degat_attaque;
         this.vitesse_de_deplacement = vitesse_de_deplacement;
         this.chemin_image = chemin_image;
+        this.id_map = id_map;
     }
 
     public Zombies(Zombies zombie) {
@@ -28,6 +30,7 @@ public class Zombies {
         this.degat_attaque = zombie.degat_attaque;
         this.vitesse_de_deplacement = zombie.vitesse_de_deplacement;
         this.chemin_image = zombie.chemin_image;
+        this.id_map = zombie.id_map;
     }
 
     // Getters
@@ -38,6 +41,7 @@ public class Zombies {
     public int getDegat_attaque() { return degat_attaque; }
     public int getVitesse_de_deplacement() { return vitesse_de_deplacement; }
     public String getChemin_image() { return chemin_image; }
+    public int getId_map() { return id_map; }
 
     // Setters
     public void setId_zombie(String id_zombie) { this.id_zombie = id_zombie; }
@@ -47,4 +51,5 @@ public class Zombies {
     public void setDegat_attaque(int degat_attaque) { this.degat_attaque = degat_attaque; }
     public void setVitesse_de_deplacement(int vitesse_de_deplacement) { this.vitesse_de_deplacement = vitesse_de_deplacement; }
     public void setChemin_image(String chemin_image) { this.chemin_image = chemin_image; }
+    public void setId_map(int id_map) { this.id_map = id_map; }
 }

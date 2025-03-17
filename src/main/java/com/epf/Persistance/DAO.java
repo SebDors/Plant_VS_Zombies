@@ -90,7 +90,8 @@ public class DAO {
                 rs.getInt("attaque_par_seconde"),
                 rs.getInt("degat_attaque"),
                 rs.getInt("vitesse_de_deplacement"),
-                rs.getString("chemin_image"));
+                rs.getString("chemin_image"),
+                rs.getInt("id_map"));
         return jdbcTemplate.query(sql, rowMapper);
     }
     // READ from id_map
@@ -103,7 +104,8 @@ public class DAO {
                 rs.getInt("attaque_par_seconde"),
                 rs.getInt("degat_attaque"),
                 rs.getInt("vitesse_de_deplacement"),
-                rs.getString("chemin_image"));
+                rs.getString("chemin_image"),
+                rs.getInt("id_map"));
         return jdbcTemplate.query(sql, rowMapper, map.getIdMap());
     }
 
@@ -130,7 +132,7 @@ public class DAO {
     // CRUD for GameMap
     // Create
     public void addGameMap(GameMap gameMap) {
-        String sql = "INSERT INTO game_map (ligne, colonne, chemin_image) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO map (ligne, colonne, chemin_image) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, 
             gameMap.getLigne(),
             gameMap.getColonne(),
@@ -139,7 +141,7 @@ public class DAO {
 
     // READ
     public List<GameMap> getAllGameMaps() {
-        String sql = "SELECT * FROM game_map";
+        String sql = "SELECT * FROM map";
         RowMapper<GameMap> rowMapper = (rs, rowNum) -> new GameMap(
             rs.getInt("id_map"),
             rs.getInt("ligne"),
@@ -150,7 +152,7 @@ public class DAO {
 
     // UPDATE
     public void updateGameMap(GameMap gameMap) {
-        String sql = "UPDATE game_map SET ligne = ?, colonne = ?, chemin_image = ? WHERE id_map = ?";
+        String sql = "UPDATE map SET ligne = ?, colonne = ?, chemin_image = ? WHERE id_map = ?";
         jdbcTemplate.update(sql,
             gameMap.getLigne(),
             gameMap.getColonne(),
@@ -160,7 +162,7 @@ public class DAO {
 
     // DELETE
     public void deleteGameMap(GameMap gameMap) {
-        String sql = "DELETE FROM game_map WHERE id_map = ?";
+        String sql = "DELETE FROM map WHERE id_map = ?";
         jdbcTemplate.update(sql, gameMap.getIdMap());
     }
 }
