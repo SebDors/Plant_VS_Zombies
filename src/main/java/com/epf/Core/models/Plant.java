@@ -11,7 +11,6 @@ public class Plant {
     private String effet;
     private String chemin_image;
 
-    // Est-ce que le constructeur par défaut est nécessaire ? Car j'utilise Spring
     public Plant(int id, String nom, int point_de_vie, int cout, int degat_attaque, int attaque_par_seconde, int soleil_par_seconde, String effet, String chemin_image) {
         this.id = id;
         this.nom = nom;

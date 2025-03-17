@@ -1,25 +1,32 @@
 package com.epf;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.epf.Core.models.Plant;
 import com.epf.Persistance.ConfigBDD;
+import com.epf.Persistance.DAO;
 
 @ComponentScan(basePackages = "com.epf")
 public class Main {
     public static void main(String[] args) {
         try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ConfigBDD.class)) {
-            JdbcTemplate jdbcTemplate = context.getBean(JdbcTemplate.class);
+            DAO dao = context.getBean(DAO.class);
             
-            String sql = "SELECT * FROM map";
-            List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
             System.out.println("\033c"); // Clear console
-            for (Map<String, Object> row : rows) {
-                System.out.println(row);
+            System.out.println("Liste des plantes disponibles :");
+            List<Plant> plants = dao.getAllPlants();
+            for (Plant plant : plants) {
+                System.out.println("----------------------------------------");
+                System.out.println("Nom: " + plant.getNom());
+                System.out.println("Points de vie: " + plant.getPointDeVie());
+                System.out.println("Coût: " + plant.getCout());
+                System.out.println("Dégâts: " + plant.getDegatAttaque());
+                System.out.println("Attaques par seconde: " + plant.getAttaqueParSeconde());
+                System.out.println("Soleils par seconde: " + plant.getSoleilParSeconde());
+                System.out.println("Effet: " + plant.getEffet());
             }
         }
     }
