@@ -93,6 +93,19 @@ public class DAO {
                 rs.getString("chemin_image"));
         return jdbcTemplate.query(sql, rowMapper);
     }
+    // READ from id_map
+    public List<Zombies> getZombiesFromMap(GameMap map) {
+        String sql = "SELECT * FROM zombie WHERE id_map = ?";
+        RowMapper<Zombies> rowMapper = (rs, rowNum) -> new Zombies(
+                rs.getString("id_zombie"),
+                rs.getString("nom"),
+                rs.getInt("point_de_vie"),
+                rs.getInt("attaque_par_seconde"),
+                rs.getInt("degat_attaque"),
+                rs.getInt("vitesse_de_deplacement"),
+                rs.getString("chemin_image"));
+        return jdbcTemplate.query(sql, rowMapper, map.getIdMap());
+    }
 
     // UPDATE
     public void updateZombie(Zombies zombie) {
