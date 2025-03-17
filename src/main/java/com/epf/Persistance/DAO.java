@@ -113,4 +113,41 @@ public class DAO {
         String sql = "DELETE FROM zombie WHERE id_zombie = ?";
         jdbcTemplate.update(sql, zombie.getId_zombie());
     }
+
+    // CRUD for GameMap
+    // Create
+    public void addGameMap(GameMap gameMap) {
+        String sql = "INSERT INTO game_map (ligne, colonne, chemin_image) VALUES (?, ?, ?)";
+        jdbcTemplate.update(sql, 
+            gameMap.getLigne(),
+            gameMap.getColonne(),
+            gameMap.getCheminImage());
+    }
+
+    // READ
+    public List<GameMap> getAllGameMaps() {
+        String sql = "SELECT * FROM game_map";
+        RowMapper<GameMap> rowMapper = (rs, rowNum) -> new GameMap(
+            rs.getInt("id_map"),
+            rs.getInt("ligne"),
+            rs.getInt("colonne"),
+            rs.getString("chemin_image"));
+        return jdbcTemplate.query(sql, rowMapper);
+    }
+
+    // UPDATE
+    public void updateGameMap(GameMap gameMap) {
+        String sql = "UPDATE game_map SET ligne = ?, colonne = ?, chemin_image = ? WHERE id_map = ?";
+        jdbcTemplate.update(sql,
+            gameMap.getLigne(),
+            gameMap.getColonne(),
+            gameMap.getCheminImage(),
+            gameMap.getIdMap());
+    }
+
+    // DELETE
+    public void deleteGameMap(GameMap gameMap) {
+        String sql = "DELETE FROM game_map WHERE id_map = ?";
+        jdbcTemplate.update(sql, gameMap.getIdMap());
+    }
 }
