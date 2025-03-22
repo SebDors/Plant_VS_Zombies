@@ -8,10 +8,10 @@ import org.springframework.context.annotation.ComponentScan;
 import com.epf.Core.models.GameMap;
 import com.epf.Core.models.Plant;
 import com.epf.Core.models.Zombie;
-import com.epf.Persistance.ConfigBDD;
-import com.epf.Persistance.DAOGameMapImpl;
-import com.epf.Persistance.DAOZombieImpl;
-import com.epf.Persistance.DAOPlantImpl;
+import com.epf.Persistance.Config.ConfigBDD;
+import com.epf.Persistance.ImplementationDAO.DAOGameMapImpl;
+import com.epf.Persistance.ImplementationDAO.DAOPlantImpl;
+import com.epf.Persistance.ImplementationDAO.DAOZombieImpl;
 
 @ComponentScan(basePackages = "com.epf")
 public class Main {

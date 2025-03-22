@@ -1,4 +1,4 @@
-package com.epf.Persistance;
+package com.epf.Persistance.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
