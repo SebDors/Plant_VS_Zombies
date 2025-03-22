@@ -9,7 +9,9 @@ import com.epf.Core.models.GameMap;
 import com.epf.Core.models.Plant;
 import com.epf.Core.models.Zombies;
 import com.epf.Persistance.ConfigBDD;
-import com.epf.Persistance.DAO;
+import com.epf.Persistance.DAOGameMap;
+import com.epf.Persistance.DAOZombies;
+import com.epf.Persistance.DAOPlant;
 
 @ComponentScan(basePackages = "com.epf")
 public class Main {
@@ -54,16 +56,18 @@ public class Main {
 
     public static void main(String[] args) {
         try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ConfigBDD.class)) {
-            DAO dao = context.getBean(DAO.class);
+            DAOPlant daoPlant = context.getBean(DAOPlant.class);
+            DAOZombies daoZombie = context.getBean(DAOZombies.class);
+            DAOGameMap daoGameMap = context.getBean(DAOGameMap.class);
+                        
+            // Récupération et affichage des données
+            List<Plant> plants = daoPlant.getAllPlants();
+            List<GameMap> maps = daoGameMap.getAllGameMaps();
+            List<Zombies> zombies = daoZombie.getAllZombies();
+            List<Zombies> zombiesFromMap = daoZombie.getZombiesFromMap(maps.get(0));
             
             System.out.println("\033c"); // Clear console
-            
-            // Récupération et affichage des données
-            List<Plant> plants = dao.getAllPlants();
-            List<GameMap> maps = dao.getAllGameMaps();
-            List<Zombies> zombies = dao.getAllZombies();
-            List<Zombies> zombiesFromMap = dao.getZombiesFromMap(maps.get(0));
-            
+
             displayPlants(plants);
             displayZombies(zombies);
             displayZombies(zombiesFromMap);
