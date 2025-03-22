@@ -7,11 +7,11 @@ import org.springframework.context.annotation.ComponentScan;
 
 import com.epf.Core.models.GameMap;
 import com.epf.Core.models.Plant;
-import com.epf.Core.models.Zombies;
+import com.epf.Core.models.Zombie;
 import com.epf.Persistance.ConfigBDD;
-import com.epf.Persistance.DAOGameMap;
-import com.epf.Persistance.DAOZombies;
-import com.epf.Persistance.DAOPlant;
+import com.epf.Persistance.DAOGameMapImpl;
+import com.epf.Persistance.DAOZombieImpl;
+import com.epf.Persistance.DAOPlantImpl;
 
 @ComponentScan(basePackages = "com.epf")
 public class Main {
@@ -30,9 +30,9 @@ public class Main {
         }
     }
 
-    private static void displayZombies(List<Zombies> zombies) {
+    private static void displayZombies(List<Zombie> zombies) {
         System.out.println("\n=== ZOMBIES ===");
-        for (Zombies zombie : zombies) {
+        for (Zombie zombie : zombies) {
             System.out.println("ID: " + zombie.getId_zombie());
             System.out.println("Nom: " + zombie.getNom());
             System.out.println("PV: " + zombie.getPoint_de_vie());
@@ -56,15 +56,15 @@ public class Main {
 
     public static void main(String[] args) {
         try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ConfigBDD.class)) {
-            DAOPlant daoPlant = context.getBean(DAOPlant.class);
-            DAOZombies daoZombie = context.getBean(DAOZombies.class);
-            DAOGameMap daoGameMap = context.getBean(DAOGameMap.class);
+            DAOPlantImpl daoPlant = context.getBean(DAOPlantImpl.class);
+            DAOZombieImpl daoZombie = context.getBean(DAOZombieImpl.class);
+            DAOGameMapImpl daoGameMap = context.getBean(DAOGameMapImpl.class);
                         
             // Récupération et affichage des données
             List<Plant> plants = daoPlant.getAllPlants();
             List<GameMap> maps = daoGameMap.getAllGameMaps();
-            List<Zombies> zombies = daoZombie.getAllZombies();
-            List<Zombies> zombiesFromMap = daoZombie.getZombiesFromMap(maps.get(0));
+            List<Zombie> zombies = daoZombie.getAllZombies();
+            List<Zombie> zombiesFromMap = daoZombie.getZombiesFromGameMap(maps.get(0));
             
             System.out.println("\033c"); // Clear console
 

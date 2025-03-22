@@ -3,15 +3,17 @@ package com.epf.Persistance;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.epf.Core.models.GameMap;
+import com.epf.Persistance.InterfaceDAO.DAOGameMapInterface;
+
 import java.util.List;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class DAOGameMap {
+public class DAOGameMapImpl implements DAOGameMapInterface {
     private JdbcTemplate jdbcTemplate;
 
-    public DAOGameMap(JdbcTemplate jdbcTemplate) {
+    public DAOGameMapImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
     

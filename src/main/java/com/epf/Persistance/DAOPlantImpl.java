@@ -7,12 +7,13 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.epf.Core.models.Plant;
+import com.epf.Persistance.InterfaceDAO.DAOPlantInterface;
 
 @Repository
-public class DAOPlant {
+public class DAOPlantImpl implements DAOPlantInterface{
     private JdbcTemplate jdbcTemplate;
 
-    public DAOPlant(JdbcTemplate jdbcTemplate) {
+    public DAOPlantImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

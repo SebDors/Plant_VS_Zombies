@@ -7,20 +7,21 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.epf.Core.models.GameMap;
-import com.epf.Core.models.Zombies;
+import com.epf.Core.models.Zombie;
+import com.epf.Persistance.InterfaceDAO.DAOZombieInterface;
 
 @Repository
-public class DAOZombies {
+public class DAOZombieImpl implements DAOZombieInterface {
 
     private JdbcTemplate jdbcTemplate;
 
-    public DAOZombies(JdbcTemplate jdbcTemplate) {
+    public DAOZombieImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
     
     // CRUD for Zombies
     // Create
-    public void addZombie(Zombies zombie) {
+    public void addZombie(Zombie zombie) {
         String sql = "INSERT INTO zombie (nom, point_de_vie, attaque_par_seconde, degat_attaque, vitesse_de_deplacement, chemin_image) VALUES (?,?,?,?,?,?)";
         jdbcTemplate.update(sql, zombie.getNom(),
                 zombie.getPoint_de_vie(), 
@@ -31,9 +32,9 @@ public class DAOZombies {
     }
 
     // READ
-    public List<Zombies> getAllZombies() {
+    public List<Zombie> getAllZombies() {
         String sql = "SELECT * FROM zombie";
-        RowMapper<Zombies> rowMapper = (rs, rowNum) -> new Zombies(
+        RowMapper<Zombie> rowMapper = (rs, rowNum) -> new Zombie(
                 rs.getString("id_zombie"),
                 rs.getString("nom"),
                 rs.getInt("point_de_vie"),
@@ -45,9 +46,9 @@ public class DAOZombies {
         return jdbcTemplate.query(sql, rowMapper);
     }
     // READ from id_map
-    public List<Zombies> getZombiesFromMap(GameMap map) {
+    public List<Zombie> getZombiesFromGameMap(GameMap map) {
         String sql = "SELECT * FROM zombie WHERE id_map = ?";
-        RowMapper<Zombies> rowMapper = (rs, rowNum) -> new Zombies(
+        RowMapper<Zombie> rowMapper = (rs, rowNum) -> new Zombie(
                 rs.getString("id_zombie"),
                 rs.getString("nom"),
                 rs.getInt("point_de_vie"),
@@ -60,7 +61,7 @@ public class DAOZombies {
     }
 
     // UPDATE
-    public void updateZombie(Zombies zombie) {
+    public void updateZombie(Zombie zombie) {
         String sql = "UPDATE zombie SET nom = ?, point_de_vie = ?, attaque_par_seconde = ?, degat_attaque = ?, " +
                 "vitesse_de_deplacement = ?, chemin_image = ? WHERE id_zombie = ?";
         jdbcTemplate.update(sql,
@@ -74,7 +75,7 @@ public class DAOZombies {
     }
 
     // DELETE
-    public void deleteZombie(Zombies zombie) {
+    public void deleteZombie(Zombie zombie) {
         String sql = "DELETE FROM zombie WHERE id_zombie = ?";
         jdbcTemplate.update(sql, zombie.getId_zombie());
     }

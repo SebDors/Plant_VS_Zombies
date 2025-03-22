@@ -1,6 +1,6 @@
 package com.epf.Core.models;
 
-public class Zombies {
+public class Zombie {
     private String id_zombie;
     private String nom;
     private int point_de_vie;
@@ -10,7 +10,7 @@ public class Zombies {
     private String chemin_image;
     private int id_map;
     
-    public Zombies(String id_zombie, String nom, int point_de_vie, int attaque_par_seconde, 
+    public Zombie(String id_zombie, String nom, int point_de_vie, int attaque_par_seconde, 
                     int degat_attaque, int vitesse_de_deplacement, String chemin_image, int id_map) {
         this.id_zombie = id_zombie;
         this.nom = nom;
@@ -22,7 +22,7 @@ public class Zombies {
         this.id_map = id_map;
     }
 
-    public Zombies(Zombies zombie) {
+    public Zombie(Zombie zombie) {
         this.id_zombie = zombie.id_zombie;
         this.nom = zombie.nom;
         this.point_de_vie = zombie.point_de_vie;
