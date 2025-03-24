@@ -3,8 +3,8 @@ com\epf\Persistance\Config\ConfigBDD.class
 com\epf\Persistance\ImplementationDAO\DAOPlantImpl.class
 com\epf\Persistance\ImplementationDAO\DAOZombieImpl.class
 com\epf\API\DTO\GameMapDTO.class
+com\epf\Config\AppInitializer.class
 com\epf\Core\InterfaceService\ServiceGameMapInterface.class
-com\epf\Config\WebAppInitializer.class
 com\epf\Core\ImplementationService\ServicePlantImpl.class
 com\epf\API\DTO\ZombieDTO.class
 com\epf\Persistance\InterfaceDAO\DAOPlantInterface.class
