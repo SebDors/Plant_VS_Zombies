@@ -20,7 +20,7 @@ public class ServicePlantImpl implements ServicePlantInterface {
         DAOImpl.addPlant(plant);
     }
 
-    public List<Plant> gatAllPlants() {
+    public List<Plant> getAllPlants() {
         return DAOImpl.getAllPlants();
     }
 

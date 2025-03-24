@@ -18,7 +18,7 @@ public class Main {
     private static void displayPlants(List<Plant> plants) {
         System.out.println("\n=== PLANTES ===");
         for (Plant plant : plants) {
-            System.out.println("ID: " + plant.getId());
+            System.out.println("ID: " + plant.getId_plante());
             System.out.println("Nom: " + plant.getNom());
             System.out.println("PV: " + plant.getPointDeVie());
             System.out.println("Coût: " + plant.getCout());

@@ -58,13 +58,13 @@ public class DAOPlantImpl implements DAOPlantInterface{
                 plant.getSoleilParSeconde(),
                 plant.getEffet(),
                 plant.getCheminImage(),
-                plant.getId());
+                plant.getId_plante());
     }
 
     // DELETE
     public void deletePlante(Plant plant) {
         String sql = "DELETE FROM plante WHERE 'id_plante' = ?";
-        jdbcTemplate.update(sql, plant.getId());
+        jdbcTemplate.update(sql, plant.getId_plante());
     }
 
 }

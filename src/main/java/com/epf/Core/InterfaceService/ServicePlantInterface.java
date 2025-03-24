@@ -6,7 +6,7 @@ import com.epf.Core.models.Plant;
 
 public interface ServicePlantInterface {
     void addPlant(Plant plante);
-    List<Plant> gatAllPlants();
+    List<Plant> getAllPlants();
     void updatePlant(Plant plante);
     void deletePlant(Plant plante);
 }
