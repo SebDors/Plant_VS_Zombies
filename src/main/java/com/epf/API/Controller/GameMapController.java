@@ -34,6 +34,27 @@ public class GameMapController {
         return ResponseEntity.ok(mapDTOs);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<GameMapDTO> getMapById(@PathVariable("id") int id) {
+        GameMap map = serviceGameMap.getGameMaps().stream()
+            .filter(m -> m.getIdMap() == id)
+            .findFirst()
+            .orElse(null);
+        
+        if (map == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        GameMapDTO mapDTO = new GameMapDTO(
+            map.getIdMap(),
+            map.getLigne(),
+            map.getColonne(),
+            map.getCheminImage()
+        );
+        
+        return ResponseEntity.ok(mapDTO);
+    }
+
     @PostMapping
     public ResponseEntity<GameMapDTO> createMap(@RequestBody GameMapDTO mapDTO) {
         GameMap map = new GameMap(
@@ -47,7 +68,7 @@ public class GameMapController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<GameMapDTO> updateMap(@PathVariable int id, @RequestBody GameMapDTO mapDTO) {
+    public ResponseEntity<GameMapDTO> updateMap(@PathVariable("id") int id, @RequestBody GameMapDTO mapDTO) {
         GameMap map = new GameMap(
             id,
             mapDTO.getLigne(),
@@ -59,7 +80,7 @@ public class GameMapController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMap(@PathVariable int id) {
+    public ResponseEntity<Void> deleteMap(@PathVariable("id") int id) {
         GameMap map = serviceGameMap.getGameMaps().stream()
             .filter(m -> m.getIdMap() == id)
             .findFirst()

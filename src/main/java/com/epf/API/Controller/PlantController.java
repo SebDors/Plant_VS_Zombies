@@ -44,7 +44,7 @@ public class PlantController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PlantDTO> getPlantById(@PathVariable int id) {
+    public ResponseEntity<PlantDTO> getPlantById(@PathVariable("id") int id) {
         Plant plant = servicePlant.getAllPlants().stream()
             .filter(p -> p.getId_plante() == id)
             .findFirst()
@@ -87,7 +87,7 @@ public class PlantController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PlantDTO> updatePlant(@PathVariable int id, @RequestBody PlantDTO plantDTO) {
+    public ResponseEntity<PlantDTO> updatePlant(@PathVariable("id") int id, @RequestBody PlantDTO plantDTO) {
         Plant plant = new Plant(
             plantDTO.getNom(),
             plantDTO.getPointDeVie(),
@@ -105,7 +105,7 @@ public class PlantController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePlant(@PathVariable int id) {
+    public ResponseEntity<Void> deletePlant(@PathVariable("id") int id) {
         Plant plant = servicePlant.getAllPlants().stream()
             .filter(p -> p.getId_plante() == id)
             .findFirst()

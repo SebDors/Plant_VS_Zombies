@@ -64,7 +64,7 @@ public class ZombieController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ZombieDTO> updateZombie(@PathVariable String id, @RequestBody ZombieDTO zombieDTO) {
+    public ResponseEntity<ZombieDTO> updateZombie(@PathVariable("id") String id, @RequestBody ZombieDTO zombieDTO) {
         zombieDTO.setId_zombie(id);
         Zombie zombie = new Zombie(
             zombieDTO.getId_zombie(),
@@ -81,7 +81,7 @@ public class ZombieController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteZombie(@PathVariable String id) {
+    public ResponseEntity<Void> deleteZombie(@PathVariable("id") String id) {
         Zombie zombie = serviceZombie.getAllZombies().stream()
             .filter(z -> z.getId_zombie().equals(id))
             .findFirst()
@@ -96,7 +96,7 @@ public class ZombieController {
     }
 
     @GetMapping("/map/{mapId}")
-    public ResponseEntity<List<ZombieDTO>> getZombiesFromMap(@PathVariable int mapId) {
+    public ResponseEntity<List<ZombieDTO>> getZombiesFromMap(@PathVariable("mapId") int mapId) {
         GameMap map = new GameMap();
         map.setIdMap(mapId);
         List<Zombie> zombies = serviceZombie.getZombiesFromMap(map);
@@ -113,5 +113,30 @@ public class ZombieController {
             ))
             .collect(Collectors.toList());
         return ResponseEntity.ok(zombieDTOs);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ZombieDTO> getZombieById(@PathVariable("id") String id) {
+        Zombie zombie = serviceZombie.getAllZombies().stream()
+            .filter(z -> z.getId_zombie().equals(id))
+            .findFirst()
+            .orElse(null);
+        
+        if (zombie == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        ZombieDTO zombieDTO = new ZombieDTO(
+            zombie.getId_zombie(),
+            zombie.getNom(),
+            zombie.getPoint_de_vie(),
+            zombie.getAttaque_par_seconde(),
+            zombie.getDegat_attaque(),
+            zombie.getVitesse_de_deplacement(),
+            zombie.getChemin_image(),
+            zombie.getId_map()
+        );
+        
+        return ResponseEntity.ok(zombieDTO);
     }
 }
