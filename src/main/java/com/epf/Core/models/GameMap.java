@@ -6,12 +6,18 @@ public class GameMap {
     private int colonne;
     private String chemin_image;
 
-    // Constructeur par défaut
     public GameMap(int id_map, int ligne, int colonne, String chemin_image) {
         this.id_map = id_map;
         this.ligne = ligne;
         this.colonne = colonne;
         this.chemin_image = chemin_image;
+    }
+
+    public GameMap() {
+        this.id_map = 0;
+        this.ligne = 0;
+        this.colonne = 0;
+        this.chemin_image = "";
     }
 
     // Getters

@@ -26,7 +26,7 @@ public class PlantController {
     @GetMapping
     public ResponseEntity<List<PlantDTO>> getAllPlants() {
         logger.info("Accessing getAllPlants endpoint");
-        List<Plant> plants = servicePlant.getAllPlants(); // Correction de gatAllPlants en getAllPlants
+        List<Plant> plants = servicePlant.getAllPlants();
         List<PlantDTO> plantDTOs = plants.stream()
             .map(p -> new PlantDTO(
                 p.getId_plante(),
