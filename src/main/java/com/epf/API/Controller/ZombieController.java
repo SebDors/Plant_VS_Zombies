@@ -64,7 +64,7 @@ public class ZombieController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ZombieDTO> updateZombie(@PathVariable("id") String id, @RequestBody ZombieDTO zombieDTO) {
+    public ResponseEntity<ZombieDTO> updateZombie(@PathVariable("id") int id, @RequestBody ZombieDTO zombieDTO) {
         zombieDTO.setId_zombie(id);
         Zombie zombie = new Zombie(
             zombieDTO.getId_zombie(),
@@ -81,9 +81,9 @@ public class ZombieController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteZombie(@PathVariable("id") String id) {
+    public ResponseEntity<Void> deleteZombie(@PathVariable("id") int id) {
         Zombie zombie = serviceZombie.getAllZombies().stream()
-            .filter(z -> z.getId_zombie().equals(id))
+            .filter(z -> z.getId_zombie() == id)
             .findFirst()
             .orElse(null);
             
@@ -116,9 +116,9 @@ public class ZombieController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ZombieDTO> getZombieById(@PathVariable("id") String id) {
+    public ResponseEntity<ZombieDTO> getZombieById(@PathVariable("id") int id) {
         Zombie zombie = serviceZombie.getAllZombies().stream()
-            .filter(z -> z.getId_zombie().equals(id))
+            .filter(z -> z.getId_zombie() == id)
             .findFirst()
             .orElse(null);
         

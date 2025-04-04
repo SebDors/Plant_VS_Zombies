@@ -63,7 +63,7 @@ public class DAOPlantImpl implements DAOPlantInterface{
 
     // DELETE
     public void deletePlante(Plant plant) {
-        String sql = "DELETE FROM plante WHERE 'id_plante' = ?";
+        String sql = "DELETE FROM plante WHERE id_plante = ?";
         jdbcTemplate.update(sql, plant.getId_plante());
     }
 

@@ -1,27 +1,29 @@
 package com.epf.API.DTO;
 
 public class PlantDTO {
-    private int id_plante; // Changé de id à id_plante
+    private int id_plante;
     private String nom;
-    private int point_de_vie; // déjà correct
-    private double attaque_par_seconde; // Changé en double
+    private int point_de_vie;
+    private double attaque_par_seconde; 
     private int degat_attaque;
     private int cout;
-    private double soleil_par_seconde; // Changé en double
+    private double soleil_par_seconde;
     private String effet;
     private String chemin_image;
 
-    public PlantDTO(int id, String nom, int point_de_vie, int cout, int degat_attaque, 
-                   double attaque_par_seconde, double soleil_par_seconde, String effet, String chemin_image) {
-        this.id_plante = id;
+    public PlantDTO() {}
+
+    public PlantDTO(int id_plante, String nom, int pointDeVie, int cout, int degatAttaque, 
+                   double attaqueParSeconde, double soleilParSeconde, String effet, String cheminImage) {
+        this.id_plante = id_plante;
         this.nom = nom;
-        this.point_de_vie = point_de_vie;
+        this.point_de_vie = pointDeVie;
         this.cout = cout;
-        this.degat_attaque = degat_attaque;
-        this.attaque_par_seconde = attaque_par_seconde;
-        this.soleil_par_seconde = soleil_par_seconde;
+        this.degat_attaque = degatAttaque;
+        this.attaque_par_seconde = attaqueParSeconde;
+        this.soleil_par_seconde = soleilParSeconde;
         this.effet = effet;
-        this.chemin_image = chemin_image;
+        this.chemin_image = cheminImage;
     }
 
     // Getters

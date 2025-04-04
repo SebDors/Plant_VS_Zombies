@@ -36,4 +36,7 @@ public class ServiceZombieImpl implements ServiceZombieInterface {
     public void deleteZombie(Zombie zombie) {
         DAOImpl.deleteZombie(zombie);
     }
+    public void deleteZombiesFromMap(GameMap gameMap) {
+        DAOImpl.deleteZombiesFromMap(gameMap);
+    }
 }

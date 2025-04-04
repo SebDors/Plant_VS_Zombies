@@ -3,8 +3,6 @@ package com.epf.API.Controller;
 import com.epf.API.DTO.PlantDTO;
 import com.epf.Core.InterfaceService.ServicePlantInterface;
 import com.epf.Core.models.Plant;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,9 +12,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/plantes")
 @CrossOrigin(origins = "http://localhost:5173")
-public class PlantController {
-    private static final Logger logger = LoggerFactory.getLogger(PlantController.class);
-    
+public class PlantController {   
     private final ServicePlantInterface servicePlant;
 
     public PlantController(ServicePlantInterface servicePlant) {
@@ -25,7 +21,6 @@ public class PlantController {
 
     @GetMapping
     public ResponseEntity<List<PlantDTO>> getAllPlants() {
-        logger.info("Accessing getAllPlants endpoint");
         List<Plant> plants = servicePlant.getAllPlants();
         List<PlantDTO> plantDTOs = plants.stream()
             .map(p -> new PlantDTO(
@@ -72,6 +67,7 @@ public class PlantController {
     @PostMapping
     public ResponseEntity<PlantDTO> createPlant(@RequestBody PlantDTO plantDTO) {
         Plant plant = new Plant(
+            plantDTO.getId(),
             plantDTO.getNom(),
             plantDTO.getPointDeVie(),
             plantDTO.getCout(),
@@ -89,6 +85,7 @@ public class PlantController {
     @PutMapping("/{id}")
     public ResponseEntity<PlantDTO> updatePlant(@PathVariable("id") int id, @RequestBody PlantDTO plantDTO) {
         Plant plant = new Plant(
+            plantDTO.getId(),
             plantDTO.getNom(),
             plantDTO.getPointDeVie(),
             plantDTO.getCout(),
@@ -110,7 +107,7 @@ public class PlantController {
             .filter(p -> p.getId_plante() == id)
             .findFirst()
             .orElse(null);
-            
+        
         if (plant == null) {
             return ResponseEntity.notFound().build();
         }
