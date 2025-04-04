@@ -35,7 +35,7 @@ public class DAOZombieImpl implements DAOZombieInterface {
     public List<Zombie> getAllZombies() {
         String sql = "SELECT * FROM zombie";
         RowMapper<Zombie> rowMapper = (rs, rowNum) -> new Zombie(
-                rs.getString("id_zombie"),
+                rs.getInt("id_zombie"),
                 rs.getString("nom"),
                 rs.getInt("point_de_vie"),
                 rs.getInt("attaque_par_seconde"),
@@ -49,7 +49,7 @@ public class DAOZombieImpl implements DAOZombieInterface {
     public List<Zombie> getZombiesFromGameMap(GameMap map) {
         String sql = "SELECT * FROM zombie WHERE id_map = ?";
         RowMapper<Zombie> rowMapper = (rs, rowNum) -> new Zombie(
-                rs.getString("id_zombie"),
+                rs.getInt("id_zombie"),
                 rs.getString("nom"),
                 rs.getInt("point_de_vie"),
                 rs.getInt("attaque_par_seconde"),
@@ -78,5 +78,10 @@ public class DAOZombieImpl implements DAOZombieInterface {
     public void deleteZombie(Zombie zombie) {
         String sql = "DELETE FROM zombie WHERE id_zombie = ?";
         jdbcTemplate.update(sql, zombie.getId_zombie());
+    }
+
+    public void deleteZombiesFromMap(GameMap gameMap) {
+        String sql = "DELETE FROM zombie WHERE id_map = ?";
+        jdbcTemplate.update(sql, gameMap.getIdMap());
     }
 }

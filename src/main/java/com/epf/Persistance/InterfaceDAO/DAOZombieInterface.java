@@ -11,4 +11,5 @@ public interface DAOZombieInterface {
     List<Zombie> getZombiesFromGameMap(GameMap gameMap);
     void updateZombie(Zombie zombie);
     void deleteZombie(Zombie zombie);
+    void deleteZombiesFromMap(GameMap gameMap);
 }

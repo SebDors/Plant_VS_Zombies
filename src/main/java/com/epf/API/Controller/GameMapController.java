@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.epf.API.DTO.GameMapDTO;
 import com.epf.Core.InterfaceService.ServiceGameMapInterface;
+import com.epf.Core.InterfaceService.ServiceZombieInterface;
 import com.epf.Core.models.GameMap;
 
 @RestController
@@ -15,9 +16,11 @@ import com.epf.Core.models.GameMap;
 @CrossOrigin(origins = "http://localhost:5173")
 public class GameMapController {
     private final ServiceGameMapInterface serviceGameMap;
+    private final ServiceZombieInterface serviceZombie;
 
-    public GameMapController(ServiceGameMapInterface serviceGameMap) {
+    public GameMapController(ServiceGameMapInterface serviceGameMap, ServiceZombieInterface serviceZombie) {
         this.serviceGameMap = serviceGameMap;
+        this.serviceZombie = serviceZombie;
     }
 
     @GetMapping
@@ -90,6 +93,7 @@ public class GameMapController {
             return ResponseEntity.notFound().build();
         }
         
+        serviceZombie.deleteZombiesFromMap(map);
         serviceGameMap.deleteGameMap(map);
         return ResponseEntity.ok().build();
     }
