@@ -10,6 +10,7 @@ com\epf\Core\InterfaceService\ServiceZombieInterface.class
 com\epf\Core\ImplementationService\ServiceGameMapImpl.class
 com\epf\API\DTO\PlantDTO.class
 com\epf\Core\models\Zombie.class
+com\epf\Persistance\Exception\PlantValidationException.class
 com\epf\Core\InterfaceService\ServicePlantInterface.class
 com\epf\Persistance\ImplementationDAO\DAOGameMapImpl.class
 com\epf\Persistance\InterfaceDAO\DAOGameMapInterface.class

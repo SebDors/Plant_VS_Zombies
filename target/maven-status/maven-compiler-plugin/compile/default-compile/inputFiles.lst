@@ -17,6 +17,7 @@ C:\Users\dorss\OneDrive - Fondation EPF\Cours\4A\Java\Projet\PVZ\src\main\java\c
 C:\Users\dorss\OneDrive - Fondation EPF\Cours\4A\Java\Projet\PVZ\src\main\java\com\epf\Core\models\Zombie.java
 C:\Users\dorss\OneDrive - Fondation EPF\Cours\4A\Java\Projet\PVZ\src\main\java\com\epf\Main.java
 C:\Users\dorss\OneDrive - Fondation EPF\Cours\4A\Java\Projet\PVZ\src\main\java\com\epf\Persistance\Config\ConfigBDD.java
+C:\Users\dorss\OneDrive - Fondation EPF\Cours\4A\Java\Projet\PVZ\src\main\java\com\epf\Persistance\Exception\PlantValidationException.java
 C:\Users\dorss\OneDrive - Fondation EPF\Cours\4A\Java\Projet\PVZ\src\main\java\com\epf\Persistance\ImplementationDAO\DAOGameMapImpl.java
 C:\Users\dorss\OneDrive - Fondation EPF\Cours\4A\Java\Projet\PVZ\src\main\java\com\epf\Persistance\ImplementationDAO\DAOPlantImpl.java
 C:\Users\dorss\OneDrive - Fondation EPF\Cours\4A\Java\Projet\PVZ\src\main\java\com\epf\Persistance\ImplementationDAO\DAOZombieImpl.java
