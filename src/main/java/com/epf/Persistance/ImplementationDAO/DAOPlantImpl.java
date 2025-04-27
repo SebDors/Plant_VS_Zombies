@@ -17,19 +17,21 @@ public class DAOPlantImpl implements DAOPlantInterface {
 
     public DAOPlantImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-    }    private void validatePlant(Plant plant) {
+    }
+
+    private void validatePlant(Plant plant) {
         // Validation du nom
         if (plant.getNom() == null || plant.getNom().trim().isEmpty()) {
             throw new PlantValidationException("Le nom de la plante ne peut pas être vide");
         }
 
         // Validation des points de vie
-        if (plant.getPointDeVie() <= 0) {
+        if (plant.getPointDeVie() < 0) {
             throw new PlantValidationException("Les points de vie doivent être supérieurs à 0");
         }
 
         // Validation du coût
-        if (plant.getCout() <= 0) {
+        if (plant.getCout() < 0) {
             throw new PlantValidationException("Le coût doit être supérieur à 0");
         }
 
